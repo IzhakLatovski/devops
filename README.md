@@ -1,0 +1,1 @@
+Izhak Latovski's portfolio project for Develeap.
