@@ -20,9 +20,11 @@ def index():
         if request.form.get('Encrypt') == 'Encrypt':
             db.db.collection.insert_one({"name": "Izhak"})
             print("Added new skill to database")
+            return render_template("index.html")
         elif  request.form.get('Decrypt') == 'Decrypt':
             # pass # do something else
             print("Decrypted")
+            return render_template("index.html")
         else:
             # pass # unknown
             return render_template("index.html")
@@ -38,4 +40,4 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(port=8000)
+    app.run(port=5000, debug=True, host='0.0.0.0')
