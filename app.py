@@ -1,19 +1,37 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import db
 
 app = Flask(__name__)
 
 
 
-@app.route('/')
-def flask_mongodb_atlas():
-    skills = db.db.collection.find()
-    for skill in skills:
-          print(skill)
+# @app.route('/')
+# def flask_mongodb_atlas():
+#     skills = db.db.collection.find()
+#     for skill in skills:
+#           print(skill)
 
-    return render_template("index.html")
+#     return render_template("index.html")
 
-#test to insert data to the data base
+@app.route("/", methods=['GET', 'POST'])
+def index():
+        print(request.method)
+        if request.method == 'POST':
+            if request.form.get('Encrypt') == 'Encrypt':
+                db.db.collection.insert_one({"name": "Izhak"})
+                print("Added new skill to database")
+            elif  request.form.get('Decrypt') == 'Decrypt':
+                # pass # do something else
+                print("Decrypted")
+            else:
+                # pass # unknown
+                return render_template("index.html")
+        elif request.method == 'GET':
+            # return render_template("index.html")
+            print("No Post Back Call")
+        return render_template("index.html")
+
+
 @app.route("/test")
 def test():
     db.db.collection.insert_one({"name": "John"})
