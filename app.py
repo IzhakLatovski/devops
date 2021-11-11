@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import db
 
 app = Flask(__name__)
@@ -11,7 +11,7 @@ def flask_mongodb_atlas():
     for skill in skills:
           print(skill)
 
-    return "GOOOOOOOOOOOOOOOD"
+    return render_template("index.html")
 
 #test to insert data to the data base
 @app.route("/test")
