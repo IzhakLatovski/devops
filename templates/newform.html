@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Izhak Portfolio Home</title>
+    <title>New skill</title>
 
     <style>
         * {
@@ -33,32 +33,16 @@
     </style>
 </head>
 <body>
-    <h1>Izhak's Portfolio<h1>
-
-    <h4>Welcome to my portfolio project for Develeap Bootcamp 10</h4>
-    <h4>Here I will show you the skills I got during this Bootcamp</h4>
+    <h1>New skill<h1>
     
-    <form method="post" action="/">
-        <input type="submit" value="Encrypt" name="Encrypt"/>
-        <input type="submit" value="Decrypt" name="Decrypt" />
+    <form method="post" action="/newform">
+        <input type="submit" value="Add" name="Add" />
+        <input type="text" name="name" placeholder="Skill name">
+        <input type="text" name="category" placeholder="Category">
+        <input type="text" name="date" placeholder="Date aquired">
+        <input type="text" name="description" placeholder="Description">
+        <input type="text" name="icon" placeholder="Icon URL">
     </form>
-
-    
-        {% for value in skills %}
-        <div class="skill">
-        <img src={{ value.icon }} alt="skill-image">
-        <h4>{{ value.name }}</h4>
-        <h5>{{ value.category }}</h5>
-        <h5>{{ value.date }}</h5>
-        <p>{{ value.description }}<p>
-            <form method="post" action="/">
-                <input type="submit" value="Delete" name="Delete"/>
-            </form>
-        </div>
-
-        {% endfor %}
-
-    
 
 </body>
 </html>
