@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from werkzeug.utils import redirect
 import db
 
 app = Flask(__name__)
@@ -9,29 +10,35 @@ def index():
     all_skills = db.db.collection.find({})
 
     if request.method == 'POST':
-        if request.form.get('Encrypt') == 'Encrypt':
-            # db.db.collection.insert_one({"name": "Bash", "category": "Scripting", "date": "8/21", "description": "Basic scripting on Linux, using Bash", "icon": "https://e7.pngegg.com/pngimages/330/276/png-clipart-bash-shell-script-bourne-shell-scripting-language-unix-shell-shell-rectangle-logo.png"})
-            # db.db.collection.insert_one({"name": "Flask", "category": "Development", "date": "9/21", "description": "Python programming language, Flask specificly", "icon": "https://miro.medium.com/max/800/1*Q5EUk28Xc3iCDoMSkrd1_w.png"})
-            return render_template("index.html", skills=all_skills)
-        elif  request.form.get('Decrypt') == 'Decrypt':
-            return render_template("index.html", skills=all_skills)
-        elif request.form.get('Delete') == 'Delete':
-            db.db.collection.delete_one({"name": "Bash"})
-            return render_template("index.html", skills=all_skills)
+        if request.form.get('Add') == 'Add':
+            db.db.collection.insert_one({"name": request.form['name'], "category": request.form['category'], "date": request.form['date'], "description": request.form['description'], "icon": request.form['icon']})
+            return render_template("index.html", skills=all_skills) 
         else:
             return render_template("index.html", skills=all_skills)
     elif request.method == 'GET':
         return render_template("index.html", skills=all_skills)
 
-@app.route("/newform", methods=['GET', 'POST'])
+@app.route("/newform", methods=['GET'])
 def newform():
-    all_skills = db.db.collection.find({})
-
     if request.method == 'GET':
         return render_template("newform.html")
-    elif request.method == 'POST':
-        db.db.collection.insert_one({"name": request.form['name'], "category": request.form['category'], "date": request.form['date'], "description": request.form['description'], "icon": request.form['icon'], })
-        return render_template("index.html", skills=all_skills) 
+
+@app.route("/editform", methods=['GET'])
+def editform():
+    if request.method == 'GET':
+        return render_template("editform.html")
+
+@app.route('/<path:path>', methods=['POST', 'PUT'])
+def skill(path):
+    if request.method == 'POST':
+        if request.form.get('Delete') == 'Delete':
+            db.db.collection.delete_one({"name": path})
+            return redirect("/")
+    elif request.method == 'PUT':
+        if request.form.get('Edit') == 'Edit':
+            db.db.collection.update_one({"name": request.form['name'], "category": request.form['category'], "date": request.form['date'], "description": request.form['description'], "icon": request.form['icon'], })
+            return redirect("/")
+
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True, host='0.0.0.0')
