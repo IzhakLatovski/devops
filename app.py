@@ -28,8 +28,12 @@ def editform():
     if request.method == 'GET':
         return render_template("editform.html")
 
-@app.route('/<path:path>', methods=['POST', 'PUT'])
+@app.route('/<path:path>', methods=['GET', 'POST', 'PUT'])
 def skill(path):
+    found_skill = db.db.collection.find_one({"name": path})
+
+    if request.method == 'GET':
+            return render_template("skill.html", skill=found_skill)
     if request.method == 'POST':
         if request.form.get('Delete') == 'Delete':
             db.db.collection.delete_one({"name": path})

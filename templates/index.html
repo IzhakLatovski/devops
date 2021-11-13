@@ -14,6 +14,10 @@
         body {
             background-color: rgb(50, 235, 90);
         }
+        a {
+            text-decoration: none;
+            color: black;
+        }
         h1 {
             font-size: 3rem;
             text-transform: uppercase;
@@ -44,8 +48,8 @@
 
         {% for value in skills %}
         <div class="skill">
-        <img src={{ value.icon }} alt="skill-image">
-        <h4>{{ value.name }}</h4>
+        <a href="{{value.name}}"><img src={{ value.icon }} alt="skill-image"></a>
+        <a href="{{value.name}}"><h3>{{ value.name }}</h4></a>
         <h5>{{ value.category }}</h5>
         <h5>{{ value.date }}</h5>
         <p>{{ value.description }}<p>
