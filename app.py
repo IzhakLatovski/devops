@@ -32,12 +32,11 @@ def index():
         return render_template("index.html")
 
 
-# @app.route("/test")
-# def test():
-#     db.db.collection.insert_one({"name": "John"})
-#     return "Connected to the data base!"
+@app.route("/skills")
+def test():
+    all_skills = db.db.collection.find({})
 
-
+    return render_template("index.html", skills=all_skills)
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True, host='0.0.0.0')
