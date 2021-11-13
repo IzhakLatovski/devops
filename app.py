@@ -34,10 +34,10 @@ def skill(path):
         if request.form.get('Delete') == 'Delete':
             db.db.collection.delete_one({"name": path})
             return redirect("/")
-    elif request.method == 'PUT':
-        if request.form.get('Edit') == 'Edit':
-            db.db.collection.update_one({"name": request.form['name'], "category": request.form['category'], "date": request.form['date'], "description": request.form['description'], "icon": request.form['icon'], })
-            return redirect("/")
+    # elif request.method == 'PUT':
+    #     if request.form.get('Edit') == 'Edit':
+    #         db.db.collection.update_one({"name": request.form['name'], "category": request.form['category'], "date": request.form['date'], "description": request.form['description'], "icon": request.form['icon'], })
+    #         return redirect("/")
 
 
 if __name__ == '__main__':
