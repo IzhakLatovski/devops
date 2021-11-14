@@ -6,3 +6,31 @@ services:
     container_name: izhak-portfolio-container
     ports:
       - 5000:5000
+    links:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    hostname: test_mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - 27017:27017
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - 8080:8080
+      - 50000:50000
+    container_name: jenkins-portfolio-container
+    volumes:
+      - ~/jenkins_data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  mongo-data:
