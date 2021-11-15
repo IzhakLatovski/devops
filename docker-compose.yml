@@ -3,7 +3,7 @@ version: "3"
 services:
   flask:
     build: .
-    container_name: izhak-portfolio-container
+    container_name: flask
     ports:
       - 5000:5000
     links:
@@ -13,12 +13,11 @@ services:
     image: mongo:latest
     hostname: test_mongodb
     environment:
+      - MONGO_INITDB_DATABASE=portfolioDB
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=pass
     volumes:
       - mongo-data:/data/db
-    ports:
-      - 27017:27017
 
   jenkins:
     image: jenkins/jenkins:lts
