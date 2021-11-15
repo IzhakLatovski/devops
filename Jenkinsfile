@@ -5,6 +5,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo "*************************building app...*************************"
+                sh "cd ./jenkins"
+                sh "pwd"
                 sh "docker-compose build"
             }
         }
