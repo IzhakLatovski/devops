@@ -40,7 +40,7 @@ def editform():
     if request.method == 'GET':
         return render_template("editform.html")
 
-@app.route('/<path:path>', methods=['GET', 'POST'])
+@app.route('/skills/<path:path>', methods=['GET', 'POST'])
 def skill(path):
     db = get_db()
 

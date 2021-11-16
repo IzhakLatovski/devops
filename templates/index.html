@@ -48,8 +48,8 @@
 
         {% for value in skills %}
         <div class="skill">
-        <a href="{{value.name}}"><img src={{ value.icon }} alt="skill-image"></a>
-        <a href="{{value.name}}"><h3>{{ value.name }}</h4></a>
+        <a href="/skills/{{value.name}}"><img src={{ value.icon }} alt="skill-image"></a>
+        <a href="/skills/{{value.name}}"><h3>{{ value.name }}</h4></a>
         <h5>{{ value.category }}</h5>
         <h5>{{ value.date }}</h5>
         <p>{{ value.description }}<p>
