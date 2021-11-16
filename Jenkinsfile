@@ -15,7 +15,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo "-----------Building start----------------------------------------------------------------------------------------------------"
-                sh 'docker-compose build -t portfolio-flask-image'
+                // sh 'docker-compose build -t portfolio-flask-image'
+                sh 'touch 123123123.txt'
                 echo "-----------Building end----------------------------------------------------------------------------------------------------"
             }
         }
