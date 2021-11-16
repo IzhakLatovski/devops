@@ -3,6 +3,7 @@ version: "3"
 services:
   jenkins:
       # image: jenkins/jenkins:lts
+      image: portfolio-image
       build:
         context: .
       privileged: true

@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "*************************building app...*************************"
+                sh "cd ./jenkins"
+                sh "docker-compose build"
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "*************************testing app...*************************"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "*************************deploying app...*************************"
+            }
+        }
+    }
+}
