@@ -1,40 +1,48 @@
 pipeline {
     agent any
-    environment {
-        AWS_ACCOUNT_ID="046432083464"
-        AWS_DEFAULT_REGION="eu-west-2"
-        IMAGE_REPO_NAME="portfolio"
-        IMAGE_TAG="latest"
-        REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
-    }
+    // environment {
+    //     AWS_ACCOUNT_ID="046432083464"
+    //     AWS_DEFAULT_REGION="eu-west-2"
+    //     IMAGE_REPO_NAME="portfolio"
+    //     IMAGE_TAG="latest"
+    //     REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
+    // }
 
     // AKIAQVT4RLYEE3VX6BUV
     // l5d7fAgL4OollqSJfhnEsoc2qMaJ72xets6RuquJ
    
     stages {
+        stage('Build') {
+            steps {
+                echo "-----------Building start----------------------------------------------------------------------------------------------------"
+                sh 'docker-compose build -t portfolio-flask-image'
+                echo "-----------Building end----------------------------------------------------------------------------------------------------"
+            }
+        }
+    
         
-        stage('Logging into AWS ECR') {
-            steps {
-                echo "-----------Started----------------------------------------------------------------------------------------------------"
+        // stage('Logging into AWS ECR') {
+        //     steps {
+        //         echo "-----------Started----------------------------------------------------------------------------------------------------"
 
-                // sh "docker login -u AWS -p \$(aws ecr get-login-password --region eu-west-2) 046432083464.dkr.ecr.eu-west-2.amazonaws.com"
+        //         // sh "docker login -u AWS -p \$(aws ecr get-login-password --region eu-west-2) 046432083464.dkr.ecr.eu-west-2.amazonaws.com"
                 
-                echo "-----------Ended----------------------------------------------------------------------------------------------------"                 
-            }
-        }
+        //         echo "-----------Ended----------------------------------------------------------------------------------------------------"                 
+        //     }
+        // }
 
-        stage ('Deploy') {
-            steps {
-                echo "DEPLOYING -------------------------------------------------------"
-                script {
-                    docker.withRegistry('https://046432083464.dkr.ecr.eu-west-2.amazonaws.com',
-                    'ecr:eu-west-2:portfoliocredentials') {
-                        def myImage = docker.build(portfolio)
-                        myImage.push('latest')
-                    }
-                }
-            }
-        }
+        // stage ('Deploy') {
+        //     steps {
+        //         echo "DEPLOYING -------------------------------------------------------"
+        //         script {
+        //             docker.withRegistry('https://046432083464.dkr.ecr.eu-west-2.amazonaws.com',
+        //             'ecr:eu-west-2:portfoliocredentials') {
+        //                 def myImage = docker.build(portfolio)
+        //                 myImage.push('latest')
+        //             }
+        //         }
+        //     }
+        // }
         
     //     stage('Cloning Git') {
     //         steps {
