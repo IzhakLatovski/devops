@@ -14,7 +14,7 @@ pipeline {
             steps {
                 echo "-----------Started----------------------------------------------------------------------------------------------------"
 
-                sh "docker login -u AWS -p \$(aws ecr get-login-password --region eu-west-2) 046432083464.dkr.ecr.eu-west-2.amazonaws.com"
+                sh "aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 046432083464.dkr.ecr.eu-west-2.amazonaws.com"
 
                 echo "-----------Ended----------------------------------------------------------------------------------------------------"                 
             }
