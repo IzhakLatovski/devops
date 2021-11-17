@@ -27,10 +27,15 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 046432083464.dkr.ecr.eu-west-2.amazonaws.com'
-                sh 'docker build -t portfolio .'
-                sh 'docker tag portfolio:latest 046432083464.dkr.ecr.eu-west-2.amazonaws.com/portfolio:latest'
-                sh 'docker push 046432083464.dkr.ecr.eu-west-2.amazonaws.com/portfolio:latest'
+                // sh 'aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 046432083464.dkr.ecr.eu-west-2.amazonaws.com'
+                // sh 'docker build -t portfolio .'
+                // sh 'docker tag portfolio:latest 046432083464.dkr.ecr.eu-west-2.amazonaws.com/portfolio:latest'
+                // sh 'docker push 046432083464.dkr.ecr.eu-west-2.amazonaws.com/portfolio:latest'
+                script{
+                docker.withRegistry("https://" + "046432083464.dkr.ecr.eu-west-2.amazonaws.com/devops", "ecr:eu-west-2:" + "portfoliocredentials") {
+                    "portfolio:latest".push()
+                }
+            }
             }
         }
 
