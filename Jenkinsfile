@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('Clean') {
             steps {
-                sh 'cd ./var/jenkins_home/workspace/portfolio'
+                sh 'pwd
                 sh 'ls -la'
             }
         }
