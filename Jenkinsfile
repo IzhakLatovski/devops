@@ -23,7 +23,7 @@ pipeline {
             steps {
                 sh 'docker build -t portfolio-flask-image .'
                 script {
-                    dockerImage = docker.build "046432083464.dkr.ecr.eu-west-2.amazonaws.com/portfolio" + ":portfolio-image:$BUILD_NUMBER"
+                    dockerImage = docker.build "046432083464.dkr.ecr.eu-west-2.amazonaws.com/portfolio" + ":$BUILD_NUMBER"
                 }
             }
         }
