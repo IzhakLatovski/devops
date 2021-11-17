@@ -14,6 +14,7 @@ pipeline {
     stages {
         stage('Pull') {
             steps {
+                sh 'rm -r *'
                 checkout scm
             }
         }
