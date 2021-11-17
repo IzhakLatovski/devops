@@ -16,6 +16,7 @@ pipeline {
             steps {
                 sh 'rm -r *'
                 checkout scm
+                sh 'ls -la'
             }
         }
         
