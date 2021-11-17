@@ -24,6 +24,7 @@ pipeline {
                 sh 'docker image prune -a'
                 sh 'docker images'
                 sh 'docker build -t portfolio-flask-image .'
+                sh 'docker images'
             }
         }
 
