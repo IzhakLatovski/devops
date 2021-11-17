@@ -12,6 +12,12 @@ pipeline {
     // l5d7fAgL4OollqSJfhnEsoc2qMaJ72xets6RuquJ
    
     stages {
+        stage('Pull') {
+            steps {
+                checkout scm
+            }
+        }
+        
         stage('Clean') {
             steps {
                 sh 'cat Jenkinsfile'
