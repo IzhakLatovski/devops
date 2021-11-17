@@ -22,6 +22,9 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'docker build -t portfolio-flask-image .'
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
             }
         }
 
@@ -33,7 +36,7 @@ pipeline {
                 // sh 'docker push 046432083464.dkr.ecr.eu-west-2.amazonaws.com/portfolio:latest'
                 script{
                 docker.withRegistry("https://" + "046432083464.dkr.ecr.eu-west-2.amazonaws.com/devops", "ecr:eu-west-2:" + "portfoliocredentials") {
-                    "portfolio:latest".push()
+                    dockerImage.push()
                 }
             }
             }
