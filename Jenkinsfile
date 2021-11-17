@@ -21,7 +21,8 @@ pipeline {
         
         stage('docker ps') {
             steps {
-                sh 'docker image prune -a -y'
+                sh 'docker image prune -a'
+                sh 'y'
                 sh 'docker images'
                 sh 'docker build -t portfolio-flask-image .'
                 sh 'docker images'
