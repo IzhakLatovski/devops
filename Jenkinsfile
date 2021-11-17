@@ -21,7 +21,8 @@ pipeline {
         
         stage('Build') {
             steps {
-                sh 'docker build -t portfolio-flask-image .'
+                // sh 'docker build -t portfolio-flask-image .'
+                sh 'ls -la'
             }
         }
 
