@@ -16,13 +16,12 @@ pipeline {
             steps {
                 sh 'rm -r *'
                 checkout scm
-                sh 'ls -la'
             }
         }
         
-        stage('Clean') {
+        stage('docker ps') {
             steps {
-                sh 'cat Jenkinsfile'
+                sh 'docker ps'
             }
         }
 
