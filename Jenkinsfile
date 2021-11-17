@@ -14,8 +14,7 @@ pipeline {
     stages {
         stage('Clean') {
             steps {
-                sh 'pwd'
-                sh 'ls -la'
+                sh 'cat Jenkinsfile'
             }
         }
 
