@@ -4,6 +4,9 @@ services:
   flask:
     build: .
     container_name: flask
+    networks:
+      - front
+      - back
     links:
       - mongo
 
@@ -14,6 +17,8 @@ services:
       - MONGO_INITDB_DATABASE=portfolioDB
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=pass
+    networks:
+      - back
     volumes:
       - mongo-data:/data/db
 
@@ -25,8 +30,26 @@ services:
     ports:
       - 80:80
       - 443:443
+    networks:
+      - front
     links:
       - flask
 
 volumes:
   mongo-data:
+
+networks:
+  front:
+  back:
+
+
+# Testing option
+# chrome:
+#   image: selenium/standalone-chrome
+#   links:
+#     - 'nginx'
+#   ports:
+#     - '4444:4444'
+
+# e2e:
+#   build: Dockerfile.e2e
