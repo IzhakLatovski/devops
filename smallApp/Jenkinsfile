@@ -18,7 +18,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo '=========================================== Building ==========================================='
-                sh 'docker build -t portfolio-flask-image .'
+                sh 'docker build -t portfolio-smallApp-image .'
                 script {
                     dockerImage = docker.build "046432083464.dkr.ecr.eu-west-2.amazonaws.com/portfolio" + ":$BUILD_NUMBER"
                 }

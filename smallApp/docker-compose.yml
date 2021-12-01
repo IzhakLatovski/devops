@@ -4,3 +4,5 @@ services:
   flask:
     build: .
     container_name: smallApp
+    ports:
+    - 5000:5000
